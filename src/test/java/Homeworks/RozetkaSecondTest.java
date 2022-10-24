@@ -3,7 +3,6 @@ package Homeworks;
 
 import java.time.Duration;
 import java.util.List;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -36,30 +35,28 @@ public class RozetkaSecondTest {
     @Test
     public void rozetkaTest() throws InterruptedException {
 
-        WebElement sectionLaptopsAndComputers = driver.findElement(By.xpath("//a[@class='menu-categories__link' and contains(text(),'Ноутбуки та комп’ютери')]"));
+        WebElement sectionLaptopsAndComputers = driver.findElement(By.xpath("//a[@class='menu-categories__link' and contains(text(),'Ноутбуки')]"));
         sectionLaptopsAndComputers.click();
-        WebElement categoryLaptops = driver.findElement(By.xpath("//a[@class='tile-cats__heading tile-cats__heading_type_center ng-star-inserted' and contains(text(),'Ноутбуки')]"));
+
+        WebElement categoryLaptops = driver.findElement(By.xpath("//a[contains(@class, 'heading') and contains(text(),'Ноутбуки')]"));
         categoryLaptops.click();
-        WebElement theFirstProductWithTopSelling = driver.findElement(By.xpath("//span[@class='goods-tile__title' and contains(text(),' Ноутбук Lenovo IdeaPad 3 15ALC6 (82KU01C4RA) Arctic Grey ')]"));
+
+        WebElement theFirstProductWithTopSelling = driver.findElement(By.xpath("//span[contains(@class, 'goods-tile') and contains(text(),' Ноутбук Lenovo IdeaPad 3 15ALC6 (82KU01C4RA) ')]"));
         theFirstProductWithTopSelling.click();
-        WebElement buttonBuy = driver.findElement(By.xpath("//button[@class='buy-button button button--with-icon button--green button--medium ng-star-inserted' and @type='button']"));
+
+        WebElement buttonBuy = driver.findElement(By.xpath("//button[contains(@class, 'buy-button button button--w') and @type='button']"));
         buttonBuy.click();
-        /*WebElement closeWindow = driver.findElement(By.xpath("//button[@type='button' and @class='modal__close']"));
-        closeWindow.click();*/
-        /*List<WebElement> cartListItem = driver.findElement(By.xpath("//li[@class='cart-list__item ng-star-inserted']"));
-        int countsOfListItem = cartListItem.size();*/
-        /*assertEquals(countsOfListItem,1);*/
 
+        List<WebElement> cartListItem = driver.findElements(By.xpath("//li[@class='cart-list__item ng-star-inserted']"));
+        int countsOfListItem = cartListItem.size();
+        assertEquals(countsOfListItem, 1);
 
+        WebElement buttonClose = driver.findElement(By.xpath("//button[@class='modal__close']"));
+        buttonClose.click();
 
-
-
-        /*String verifyCartNumber = shoppingCartNumber.getText().trim();
-        Assert.assertEquals(verifyCartNumber, EXPECTED_NUMBER, "tittle equals ' 1 '");*/
-
-
-
-
+        List<WebElement> cartListItem2 = driver.findElements(By.xpath("//span[@class='counter counter--green ng-star-inserted']"));
+        int countsOfListItem2 = cartListItem2.size();
+        assertEquals(countsOfListItem2, 1);
 
 
     }
@@ -68,9 +65,6 @@ public class RozetkaSecondTest {
     public void after() {
         driver.quit();
     }
-
-
-
 
 
 }
